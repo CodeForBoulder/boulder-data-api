@@ -1,0 +1,97 @@
+Annotating "current package list with resources"
+
+I am describing them as I see them.
+Although JSON number types is basically all float, I will
+try to make a reasonable guess if the type can be refined to integer unless later proven wrong.
+
+I will use a perenthasis to make a further distinctinction and '||' if I see another type present.
+e.g. string(email-format) || null
+
+I will use // at the end to denote a comment for suspicions
+
+From the presence of nulls, I can assume that all the keys are being represented.
+
+
+
+Package structure(package_structure*) ** top level object
+
+- license_title: string
+- maintainer: string
+- relationships_as_object: [?]
+- private: boolean
+- maintainer_email: string(email-format)
+- num_tags: integer
+- id: string(uuid)
+- metadata_created: string(date-time-timezone) 
+- metadata_modified: string(date-time-timezone)
+- author: string
+- author_email: string(email-format)
+- state: string                                                   // possible enum: active, inactive etc
+- version: string                                                 // I saw an empty string, so perhaps cannot be null?
+- creator_user_id: string(uuid)
+- type: string                                                    // possible enum: dataset...
+- resources: [resource_structure*]
+- num_resources: integer
+- tags: [tag_structure*]
+- groups: [?]
+- license_id: string                                              // not a uuid, perhaps a internal format or from a discreet list
+- relationships_as_subject: [?]
+- organization: organization_structure*
+- name: string
+- isopen: boolean
+- url: string(url-format)
+- notes: string
+- owner_org: string(uuid)
+- extras: [extras_structure*]
+
+
+Resource structure(resource_structure*)
+
+- mimetype: null
+- cache_url: null
+- hash: string                                                     // empty string
+- description: string
+- name: string
+- format: string                                                   // possible enum: CSV...
+- url: string(url-format)
+- cache_last_updated: null
+- package_id: string(uuid)
+- created: string(date-time-timezone)
+- state: string                                                     // possible enum: active
+- mimetype_inner: null
+- last_modified: null
+- position: integer                                                 // perhaps meta information for ordering resources?
+- revision_id: string(uuid)
+- url_type: null
+- id: string(uuid)
+- resource_type: null
+- size: null
+
+Tag structure(tag_structure*)
+
+- vocabulary_id: null
+- state: string                                                      // possible enum: active...
+- display_name: string
+- id: string(uuid)
+- name: string
+
+Organization structure(organization_structure*)
+
+- description: string
+- created: string(date-time-timezone)
+- title: string
+- name: string
+- is_organization: boolean
+- state: string                                                        // possible enum: active...
+- image_url: string                                                    // empty string, perhaps can not be null?
+- revision_id: string(uuid)
+- type: string                                                         // possible enum: organization...
+- id: string(uuid)
+- approval_status: string                                              // possible enum: approved...
+
+Extras structure(extras_structure*)
+// appears to be extra metadata that didn't fit with the normal package structure
+// some example keys are: update_frequency, update_type, department
+
+- key: string
+- value: string
