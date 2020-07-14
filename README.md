@@ -1,4 +1,8 @@
-## Boulder Data Api
+# Boulder Data Api
+
+## ARCHIVE UPDATE
+
+This project lost traction and will be archived. If you find this and wish to pick it up, please [join us](http://www.codeforboulder.org/) and consider [resubmitting a proposal](http://www.codeforboulder.org/project-proposals).
 
 ### Api Docs
 Base uri for Boulder's ckan instance: `https://opendata.bouldercolorado.gov/api/3/action`
